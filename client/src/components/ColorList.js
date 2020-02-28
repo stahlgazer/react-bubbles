@@ -47,7 +47,7 @@ const ColorList = ({ colors, updateColors }, props) => {
       .delete(`colors/${color.id}`)
       .then(response => {
         // delete color and show updated colors that weren't deleted
-        console.log("Just deleted", response);
+        console.log("Just deleted", color);
         var newColors = colors.filter(item => item.id !== color.id);
         updateColors(newColors);
       })
@@ -61,7 +61,7 @@ const ColorList = ({ colors, updateColors }, props) => {
     axiosWithAuth()
       .post("colors", addColor)
       .then(response => {
-        console.log("Just added", response);
+        console.log("Just added", addColor);
         var newColors = [...colors, addColor];
         updateColors(newColors);
         document.getElementById('add-color').reset();
@@ -139,7 +139,7 @@ const ColorList = ({ colors, updateColors }, props) => {
           />
           <label>hex code: </label>
           <input
-            required="true"
+            required
             placeholder="#C30032"
             type="text"
             onChange={e =>
