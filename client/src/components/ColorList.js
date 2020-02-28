@@ -10,6 +10,7 @@ const ColorList = ({ colors, updateColors }, props) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const [addColor, setAddColor] = useState(initialColor);
 
   const editColor = color => {
     setEditing(true);
@@ -24,7 +25,7 @@ const ColorList = ({ colors, updateColors }, props) => {
     axiosWithAuth()
       .put(`colors/${colorToEdit.id}`, colorToEdit)
       .then(response => {
-        console.log("edited", response.data);
+        console.log("edited: ", colorToEdit);
         // return a new array with updated color and other colors
         var newColors = [];
         for (let i = 0; i < colors.length; i++) {
@@ -46,12 +47,27 @@ const ColorList = ({ colors, updateColors }, props) => {
       .delete(`colors/${color.id}`)
       .then(response => {
         // delete color and show updated colors that weren't deleted
-        console.log("Just deleted", response);
+        console.log("Just deleted", color);
         var newColors = colors.filter(item => item.id !== color.id);
         updateColors(newColors);
       })
       .catch(error => {
         console.log("error deleting", error);
+      });
+  };
+
+  const addingColor = e => {
+    e.preventDefault();
+    axiosWithAuth()
+      .post("colors", addColor)
+      .then(response => {
+        console.log("Just added", addColor);
+        var newColors = [...colors, addColor];
+        updateColors(newColors);
+        document.getElementById('add-color').reset();
+      })
+      .catch(error => {
+        console.log("error adding color", error);
       });
   };
 
@@ -110,8 +126,32 @@ const ColorList = ({ colors, updateColors }, props) => {
           </div>
         </form>
       )}
-      <div className="spacer" />
-      {/* stretch - build another form here to add a color */}
+      <div className="spacer">
+        {/* stretch - build another form here to add a color */}
+        <form id="add-color" onSubmit={addingColor}>
+          <h2>Add New Color</h2>
+          <label>color name: </label>
+          <input
+            required
+            placeholder="Cherry"
+            type="text"
+            onChange={e => setAddColor({ ...addColor, color: e.target.value })}
+          />
+          <label>hex code: </label>
+          <input
+            required
+            placeholder="#C30032"
+            type="text"
+            onChange={e =>
+              setAddColor({
+                ...addColor,
+                code: { hex: e.target.value }
+              })
+            }
+          />
+          <button>Add Color</button>
+        </form>
+      </div>
     </div>
   );
 };
