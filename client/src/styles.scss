@@ -97,3 +97,22 @@ form {
     margin-top: 16px;
   }
 }
+
+.add-color {
+  display:flex;
+  margin:0% auto;
+  width:80%;
+
+  label {
+    margin:2% auto;
+  }
+
+  input {
+    width:80%;
+    margin:2% auto;
+  }
+  button {
+    width:50%;
+    margin:2% auto;
+  }
+}
