@@ -122,7 +122,7 @@ form input {
   margin-top: 16px;
 }
 
-.add-color {
+#add-color {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -130,17 +130,22 @@ form input {
   width: 80%;
 }
 
-.add-color label {
+#add-color label {
   margin: 2% auto;
 }
 
-.add-color input {
+#add-color input {
   width: 80%;
   margin: 2% auto;
 }
 
-.add-color button {
+#add-color button {
   width: 50%;
   margin: 2% auto;
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 3px 8px;
+  margin-top: 16px;
 }
 /*# sourceMappingURL=styles.css.map */

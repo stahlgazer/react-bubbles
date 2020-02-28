@@ -64,6 +64,7 @@ const ColorList = ({ colors, updateColors }, props) => {
         console.log("Just added", response);
         var newColors = [...colors, addColor];
         updateColors(newColors);
+        document.getElementById('add-color').reset();
       })
       .catch(error => {
         console.log("error adding color", error);
@@ -127,17 +128,19 @@ const ColorList = ({ colors, updateColors }, props) => {
       )}
       <div className="spacer">
         {/* stretch - build another form here to add a color */}
-        <form className="add-color">
+        <form id="add-color" onSubmit={addingColor}>
           <h2>Add New Color</h2>
           <label>color name: </label>
           <input
-          placeholder="Cherry"
+            required
+            placeholder="Cherry"
             type="text"
             onChange={e => setAddColor({ ...addColor, color: e.target.value })}
           />
           <label>hex code: </label>
           <input
-          placeholder='#C30032'
+            required="true"
+            placeholder="#C30032"
             type="text"
             onChange={e =>
               setAddColor({
@@ -146,8 +149,7 @@ const ColorList = ({ colors, updateColors }, props) => {
               })
             }
           />
-          <button onClick={addingColor}>Add Color</button>
-          <button type="reset" value="Reset">Reset</button>
+          <button>Add Color</button>
         </form>
       </div>
     </div>

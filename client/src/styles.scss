@@ -98,7 +98,7 @@ form {
   }
 }
 
-.add-color {
+#add-color {
   display:flex;
   margin:0% auto;
   width:80%;
@@ -114,5 +114,10 @@ form {
   button {
     width:50%;
     margin:2% auto;
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 3px 8px;
+    margin-top: 16px;
   }
 }
