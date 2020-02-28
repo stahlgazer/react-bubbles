@@ -131,11 +131,13 @@ const ColorList = ({ colors, updateColors }, props) => {
           <h2>Add New Color</h2>
           <label>color name: </label>
           <input
+          placeholder="Cherry"
             type="text"
             onChange={e => setAddColor({ ...addColor, color: e.target.value })}
           />
           <label>hex code: </label>
           <input
+          placeholder='#C30032'
             type="text"
             onChange={e =>
               setAddColor({
@@ -145,6 +147,7 @@ const ColorList = ({ colors, updateColors }, props) => {
             }
           />
           <button onClick={addingColor}>Add Color</button>
+          <button type="reset" value="Reset">Reset</button>
         </form>
       </div>
     </div>
