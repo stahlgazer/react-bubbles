@@ -25,7 +25,7 @@ const ColorList = ({ colors, updateColors }, props) => {
     axiosWithAuth()
       .put(`colors/${colorToEdit.id}`, colorToEdit)
       .then(response => {
-        console.log("edited", response.data);
+        console.log("edited: ", colorToEdit);
         // return a new array with updated color and other colors
         var newColors = [];
         for (let i = 0; i < colors.length; i++) {
